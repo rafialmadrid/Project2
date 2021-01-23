@@ -1,17 +1,48 @@
 module.exports = function(sequelize, DataTypes) {
   var Solicitud = sequelize.define("Solicitud", {
-    title: {
+      
+    tipo: {
       type: DataTypes.STRING,
-      allowNull: false,
-      validate: {
-        len: [1]
-      }
     },
-    body: {
-      type: DataTypes.TEXT,
-      allowNull: false,
-      len: [1]
-    }
+    total_estudios: DataTypes.DOUBLE, //Gets calculated as the sum of estudios WHERE estudios.id = solicitudes.id
+    descuento: DataTypes.DOUBLE,
+    iva: DataTypes.DOUBLE,
+    subtotal: DataTypes.DOUBLE,
+    impuesto: DataTypes.DOUBLE,
+    total: DataTypes.DOUBLE,
+    cargo: DataTypes.DOUBLE,
+    observaciones_solicitud: DataTypes.STRING,
+    sucursal: { //FK
+      type: DataTypes.STRING,
+    },
+
+    //status: DataTypes.STRING,
+    //expediente: FK
+    /*fecha_inicio:
+    hora_inicio:
+    usuario_inicio:
+    fecha_solicitud:
+    hora_solicitud:
+    usuario_solicitud:
+    terminal_solicitud:
+    clave_procedencia: DataTypes.STRING,
+    procedencia: DataTypes.STRING,
+    clave_compania:DataTypes.STRING,
+    compania: DataTypes.STRING,
+    lista: DataTypes.STRING,*/
+    /*descuento_tipo: DataTypes.STRING,
+    descuentop: DataTypes.DOUBLE,
+    decuentoc: DataTypes.DOUBLE,*/
+    /*registro:
+    registror:*/
+    /*cargo_tipo: DataTypes.DOUBLE,  
+    cargop: DataTypes.DOUBLE,
+    cargoc: DataTypes.DOUBLE, */
+    /*tipo_convenio: DataTypes.STRING,*/
+    //medico: DataTypes.STRING,
+    //medico_clave: DataTypes.STRING, //FK
+    //tipo_solicitud: DataTypes.STRING,
+
   });
 
   Solicitud.associate = function(models) {
