@@ -32,4 +32,15 @@ module.exports = function(app) {
     res.sendFile(path.join(__dirname, "../public/author-manager.html"));
   });
 
+  app.get("/expedientes", function(req, res){
+    res.sendFile(path.join(__dirname, "../public/expediente-manager.html"));
+  });
+
+  app.get("/solicitudes", function(req, res){
+    res.sendFile(path.join(__dirname, "../public/solicitudes.html"));
+  });
+
+  app.get("/orders", function(req, res){
+    res.sendFile(path.join(__dirname, "../public/orders.html"))
+  });
 };

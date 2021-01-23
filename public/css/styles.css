@@ -45,3 +45,38 @@ button.edit {
 .top-30 {
   margin-top: 30px;
 }
+
+
+
+
+
+
+.expediente-list{
+  margin-top: 25px;
+}
+
+#expediente-name{
+ width: 100%;
+  height: 35px;
+  margin-top: 5px; 
+}
+
+#expediente-last-name{
+ width: 100%;
+  height: 35px;
+  margin-top: 5px; 
+}
+
+#expediente-age{
+ width: 100%;
+  height: 35px;
+  margin-top: 5px; 
+}
+
+#expediente-gender{
+ width: 100%;
+  height: 35px;
+  margin-top: 5px; 
+}
+
+
