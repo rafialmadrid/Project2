@@ -19,7 +19,7 @@ module.exports = function(app) {
       query.expediente = req.query.expediente;
     }
     // 1. Add a join here to include all of the Authors to these posts
-    db.Post.findAll({
+    db.Solicitud.findAll({
       include: db.Expediente,    
       where: query
     }).then(function(dbSolicitud) {

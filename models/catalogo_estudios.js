@@ -17,10 +17,10 @@ module.exports = function(sequelize, DataTypes) {
     //departamento: DataTypes.STRING,
   });
 
-  catalogoEstudio.associate = function(models) {
-    // Associating Expediente with Solicitudes
-    // When an Expediente is deleted, also delete any associated Solicitudes
-    catalogoEstudio.hasMany(models.Estudio, {
+  
+    catalogoEstudio.associate = function(models) {
+    
+    catalogoEstudio.hasOne(models.catalogoPrecio, {
       onDelete: "cascade"
     });
   };
