@@ -89,7 +89,6 @@ $(document).ready(function() {
 
 
   function getEstudio(clave) {
-
     $.get(`/api/catalogoestudios/${clave}`, function(data) {
       console.log(data);
       createEstudioRow(data);
@@ -100,12 +99,13 @@ $(document).ready(function() {
 
 
   // Function for creating a new list row for expedientes
-  function createEstudioRow(estudioData) {
+  function createEstudioRow(data) {
     var newTr = $("<tr>");
-    newTr.data("expediente", estudioData);
-    newTr.append("<td>" + estudioData.clave + "</td>");
-    newTr.append("<td>" + estudioData.nombre + "</td>");
-    newTr.append("<td>" + estudioData.dias + "</td>");
+    newTr.data("expediente", data);
+    newTr.append("<td>" + data.clave + "</td>");
+    newTr.append("<td>" + data.nombre + "</td>");
+    newTr.append("<td>" + data.total + "</td>")
+    newTr.append("<td>" + data.dias + "</td>");
     
     $("tbody").append(newTr);
   }
