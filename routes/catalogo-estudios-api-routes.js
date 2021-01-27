@@ -8,11 +8,11 @@ module.exports = function(app) {
     });
   });
 
-  app.get("/api/catalogoestudios/:clave", function(req, res) {
+  app.get("/api/catalogoestudios/:id", function(req, res) {
     
     db.catalogoEstudio.findOne({
       where: {
-        clave: req.params.clave
+        id: req.params.id
       }
     }).then(function(dbCatalogoEstudios) {
       res.json(dbCatalogoEstudios);

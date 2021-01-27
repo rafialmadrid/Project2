@@ -8,11 +8,11 @@ module.exports = function(app) {
     });
   });
 
-  app.get("/api/catalogoprecios/:clave", function(req, res) {
+  app.get("/api/catalogoprecios/:id", function(req, res) {
     
     db.catalogoPrecio.findOne({
       where: {
-        clave: req.params.clave
+        id: req.params.id
       }
     }).then(function(dbCatalogoPrecios) {
       res.json(dbCatalogoPrecios);

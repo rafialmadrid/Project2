@@ -35,6 +35,9 @@ module.exports = function(sequelize, DataTypes) {
     razon_social: DataTypes.STRING,
     domicilio: DataTypes.STRING,
 
+
+
+
     /*fecha_registro: DataTypes.DATEONLY,
     hora_registro:DataTypes.DATEONLY,
     usuario_registro: DataTypes.STRING,
@@ -42,6 +45,8 @@ module.exports = function(sequelize, DataTypes) {
     status: DataTypes.STRING,*/
 
   });
+
+
 
   Expediente.associate = function(models) {
     // Associating Expediente with Solicitudes
