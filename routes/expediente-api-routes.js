@@ -20,12 +20,27 @@ module.exports = function(app) {
     });
   });
 
+
+
+    
+
   app.post("/api/expedientes", function(req, res) {
-    db.Expediente.create(req.body).then(function(dbExpediente) {
-      console.log(req.body);
+    
+    db.Expediente.create(
+      req.body,
+      {
+        include: [{
+          model: db.Solicitud,
+          include: [db.Estudio]
+        }] 
+      })
+    .then(function(dbExpediente) {
       res.json(dbExpediente);
     });
   });
+
+
+  
 
   app.delete("/api/expedientes/:id", function(req, res) {
     db.Author.destroy({

@@ -18,9 +18,7 @@ module.exports = function(sequelize, DataTypes) {
     // We're saying that an Estudio should belong to a Solicitud
     // An Estudio can't be created without an Solicitud due to the foreign key constraint
     Estudio.belongsTo(models.Solicitud, {
-      foreignKey: {
-        allowNull: false
-      }
+
     });
   };
 

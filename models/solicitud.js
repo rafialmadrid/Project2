@@ -4,7 +4,7 @@ module.exports = function(sequelize, DataTypes) {
     tipo: {
       type: DataTypes.STRING,
     },
-    total_estudios: DataTypes.DOUBLE, //Gets calculated as the sum of estudios WHERE estudios.id = solicitudes.id
+    total_estudios: DataTypes.DOUBLE, 
     descuento: DataTypes.DOUBLE,
     iva: DataTypes.DOUBLE,
     subtotal: DataTypes.DOUBLE,
@@ -49,10 +49,13 @@ module.exports = function(sequelize, DataTypes) {
     // We're saying that a Solicitud should belong to an Expediente
     // A Solicitud can't be created without an Expediente due to the foreign key constraint
     Solicitud.belongsTo(models.Expediente, {
-      foreignKey: {
-        allowNull: false
-      }
+      
     });
+
+    Solicitud.hasMany(models.Estudio,{
+
+    });
+    
   };
 
   return Solicitud;

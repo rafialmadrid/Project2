@@ -2,7 +2,6 @@ var db = require("../models");
 
 module.exports = function(app) {
   
-  
   app.get("/api/estudioprecio/:clave", function(req, res) {
     
     db.catalogoEstudio.findOne({
@@ -14,5 +13,7 @@ module.exports = function(app) {
       res.json(dbCatalogoEstudios);
     });
   });
-
 };
+
+
+

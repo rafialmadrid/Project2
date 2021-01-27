@@ -2,9 +2,8 @@ module.exports = function(sequelize, DataTypes) {
   var catalogoEstudio = sequelize.define("catalogoEstudio", {
     clave: {
       type: DataTypes.STRING,
-      //allowNull: false,
-      
     },
+    
     nombre: {
       type: DataTypes.STRING,
       //allowNull: false,
@@ -20,7 +19,7 @@ module.exports = function(sequelize, DataTypes) {
   
     catalogoEstudio.associate = function(models) {
     
-    catalogoEstudio.hasOne(models.catalogoPrecio, {
+    catalogoEstudio.hasMany(models.catalogoPrecio, {
       onDelete: "cascade"
     });
   };
