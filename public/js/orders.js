@@ -1,15 +1,9 @@
 
-
-
-
-
-//PARA SUBIR LOS DATOS A LA BDD
-$(".btn-warning").on("click",handleSubmit);
-
-var nombre = $("#nombre");
+var nombre = $( "#nombre" );
 var apellidos = $("#apellidos");
 var sexo = $("#sexo");
-var edad = $("edad");
+var edad = $("#edad");
+var expediente = $("#expediente");
 
 var subtotal = $("#subtotal");
 var descuento = $("#descuento");
@@ -17,36 +11,62 @@ var cargo = $("#cargo");
 var total = $("#total");
 
 
+
+
+
+//PARA SUBIR LOS DATOS A LA BDD CON EXPEDIENTE NUEVO (EXPEDIENTE, SOLICITUD, ESTUDIOS)
+$(".btn-warning").on("click",handleSubmit);
+
+
+
 function handleSubmit(event) {
     event.preventDefault();
     // Don't do anything if the name fields hasn't been filled out
-    if (!nombre.val().trim() || !apellidos.val() || !sexo.val() || edad.val()) {
+    if (!nombre.val() || !apellidos.val() || !sexo.val() || !edad.val()) {
       return;
     }
     // Calling the upsertAuthor function and passing in the value of the name input
-    upsert({
-      nombre: nombre.val().trim(),
-      apellidos: apellidos.val(),
-      edad: edad.val(),
-      sexo: sexo.val(),
+       
 
-      Solicituds: {
-        total_estudios: subtotal.val() , 
-        descuento: descuento.val(),
-        subtotal: subtotal.val(),
-        cargo: cargo.val(),    
-        Estudios: estudios
-      },
+    if(!expediente.val()){
+      upsertNewExpediente({
+        nombre: nombre.val(),
+        apellidos: apellidos.val(),
+        edad: edad.val(),
+        sexo: sexo.val(),
+        
+        Solicituds: {
+          total_estudios: subtotal.val() , 
+          descuento: descuento.val(),
+          subtotal: subtotal.val(),
+          cargo: cargo.val(),    
+          //Estudios: estudios,
+        }
+      });
+    }else if(expediente.val()){
+      upsertExistingExpediente({
+          total_estudios: subtotal.val() , 
+          descuento: descuento.val(),
+          subtotal: subtotal.val(),
+          cargo: cargo.val(),    
+          ExpedienteId: expediente.val(),
+          Estudios: estudios
+      });
+    }
+    
 
-
-    });
   }
 
   
-  function upsert(data) {
+  function upsertNewExpediente(data) {
+    console.log(data);
+
     $.post("/api/expedientes", data);
   }
 
+  function upsertExistingExpediente(data){
+    $.post(`/api/solicitudes/${expediente.val()}`, data);
+  }
   
 
 
@@ -62,34 +82,38 @@ function handleSubmit(event) {
   
     var subtotal_val = 0;
     var estudios = [];
-
+    var resultados = [];
   function handleEstudioSubmit(event){
     console.log("submitted estudio");
     var clave = $("#estudios").val();
-    $.get(`/api/estudioprecio/${clave}`, function(data) {
-      
+    
+
+    $.get(`/api/estudioprecio/${clave}`).then(function(data){
+
+
+        data = JSON.parse(data);
       estudios.push({
-        clave: data.clave,
-        nombre: data.nombre
-      }
-      );
-      
-      console.log(estudios);
+        catalogoEstudioId: data.id
+      });
 
       subtotal_val += data.catalogoPrecios[0].total;
       $("#subtotal").val(subtotal_val);
 
-      
+      console.log(subtotal_val);
+      console.log(estudios);      
 
-        var newTr = $("<tr>");
+        /*var newTr = $("<tr></tr>");
       newTr.data("expediente", data);
+      console.log(data.clave);
+      console.log(data.nombre);
+      console.log(data.catalogoPrecios[0].total);
+      console.log(data.dias);
+      $("tbody").append(newTr);
       newTr.append("<td>" + data.clave + "</td>");
       newTr.append("<td>" + data.nombre + "</td>");
       newTr.append("<td>" + data.catalogoPrecios[0].total + "</td>");
-      newTr.append("<td>" + data.dias + "</td>");
-    
-      $("tbody").append(newTr);
-
+      newTr.append("<td>" + data.dias + "</td>");*/
+      
       $("#estudios").val("");
     });
   }

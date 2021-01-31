@@ -48,6 +48,22 @@ module.exports = function(app) {
     });
   });
 
+  app.post("/api/solicitudes/:id", function(req,res){
+    db.Solicitud.create(
+      req.body,
+      {
+        include: [db.Estudio],
+        where: {
+          id: req.params.id 
+        }
+      }
+    )
+    .then(function(dbSolicitud){
+      res.json(dbSolicitud);
+    });
+  });
+
+
   // DELETE route for deleting solicitudes
   app.delete("/api/solicitudes/:id", function(req, res) {
     db.Solicitud.destroy({

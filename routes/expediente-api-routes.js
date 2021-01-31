@@ -8,6 +8,16 @@ module.exports = function(app) {
     });
   });
 
+  app.get("/api/expedientes/:nombre", function(req, res){
+    db.Expediente.findAll({
+      where: {
+        nombre: req.params.nombre
+      }
+    }).then(function(dbExpediente){
+      res.json(dbExpediente);
+    })
+  });
+
   app.get("/api/expedientes/:id", function(req, res) {
     // 2; Add a join to include all of the Expedientes's Solicitudes here
     db.Expediente.findOne({
@@ -26,13 +36,17 @@ module.exports = function(app) {
 
   app.post("/api/expedientes", function(req, res) {
     
-    db.Expediente.create(
-      req.body,
+      solicituds=JSON.parse(req.body.Solicituds);
+
+    db.Expediente.create({
+      nombre: req.body.nombre,
+      apellidos: req.body.apellidos,
+      edad: req.body.edad,
+      sexo: req.body.sexo,
+      Solicituds: solicituds
+    },
       {
-        include: [{
-          model: db.Solicitud,
-          include: [db.Estudio]
-        }] 
+        include: [db.Solicitud] 
       })
     .then(function(dbExpediente) {
       res.json(dbExpediente);
@@ -49,6 +63,7 @@ module.exports = function(app) {
       }
     }).then(function(dbExpediente) {
       res.json(dbExpediente);
+      console.log(dbExpediente);
     });
   });
 
