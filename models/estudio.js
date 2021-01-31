@@ -1,8 +1,6 @@
 module.exports = function(sequelize, DataTypes) {
   var Estudio = sequelize.define("Estudio", {
-    
-      clave: DataTypes.STRING,
-      estudio: DataTypes.STRING,
+  
       fecha_entrega: DataTypes.DATEONLY, 
 
       //precio: DataTypes.DOUBLE, FROM catalogo_precios
@@ -20,6 +18,15 @@ module.exports = function(sequelize, DataTypes) {
     Estudio.belongsTo(models.Solicitud, {
 
     });
+
+    Estudio.belongsTo(models.catalogoEstudio,{
+
+    });
+
+    Estudio.hasMany(models.Resultado,{
+
+    });
+
   };
 
   return Estudio;

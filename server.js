@@ -31,6 +31,7 @@ require("./routes/solicitudes-api-routes.js")(app);
 require("./routes/catalogo-estudios-api-routes.js")(app);
 require("./routes/catalogo-precios-api-routes.js")(app);
 require("./routes/estudio-precio-api-routes.js")(app);
+require("./routes/catalogo-estudios-grupos-api-routes.js")(app);
 
 // Syncing our sequelize models and then starting our Express app
 // =============================================================

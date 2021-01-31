@@ -55,6 +55,10 @@ module.exports = function(sequelize, DataTypes) {
     Solicitud.hasMany(models.Estudio,{
 
     });
+
+    Solicitud.hasMany(models.Resultado, {
+
+    });
     
   };
 

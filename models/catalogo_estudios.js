@@ -22,7 +22,17 @@ module.exports = function(sequelize, DataTypes) {
     catalogoEstudio.hasMany(models.catalogoPrecio, {
       onDelete: "cascade"
     });
+
+    catalogoEstudio.hasMany(models.catalogoEstudiosGrupo, {
+      onDelete: "cascade"
+    });
+
+    catalogoEstudio.hasMany(models.Estudio, {
+      onDelete: "cascade"
+    });
+    
   };
+
 
   return catalogoEstudio;
 };
