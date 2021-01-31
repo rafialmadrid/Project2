@@ -4,13 +4,13 @@ module.exports = function(sequelize, DataTypes) {
     tipo: {
       type: DataTypes.STRING,
     },
-    total_estudios: DataTypes.DOUBLE, 
-    descuento: DataTypes.DOUBLE,
-    iva: DataTypes.DOUBLE,
-    subtotal: DataTypes.DOUBLE,
-    impuesto: DataTypes.DOUBLE,
-    total: DataTypes.DOUBLE,
-    cargo: DataTypes.DOUBLE,
+    total_estudios: DataTypes.STRING, 
+    descuento: DataTypes.STRING,
+    iva: DataTypes.STRING,
+    subtotal: DataTypes.STRING,
+    impuesto: DataTypes.STRING,
+    total: DataTypes.STRING,
+    cargo: DataTypes.STRING,
     observaciones_solicitud: DataTypes.STRING,
     sucursal: { //FK
       type: DataTypes.STRING,
@@ -56,9 +56,9 @@ module.exports = function(sequelize, DataTypes) {
 
     });
 
-    Solicitud.hasMany(models.Resultado, {
+    /*Solicitud.hasMany(models.Resultado, {
 
-    });
+    });*/
     
   };
 

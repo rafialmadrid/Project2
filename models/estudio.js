@@ -19,13 +19,13 @@ module.exports = function(sequelize, DataTypes) {
 
     });
 
-    Estudio.belongsTo(models.catalogoEstudio,{
+    /*Estudio.belongsTo(models.catalogoEstudio,{
 
     });
 
     Estudio.hasMany(models.Resultado,{
 
-    });
+    });*/
 
   };
 

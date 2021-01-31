@@ -36,13 +36,17 @@ module.exports = function(app) {
 
   app.post("/api/expedientes", function(req, res) {
     
-    db.Expediente.create(
-      req.body,
+      solicituds=JSON.parse(req.body.Solicituds);
+
+    db.Expediente.create({
+      nombre: req.body.nombre,
+      apellidos: req.body.apellidos,
+      edad: req.body.edad,
+      sexo: req.body.sexo,
+      Solicituds: solicituds
+    },
       {
-        include: [{
-          model: db.Solicitud,
-          include: [db.Estudio, db.Resultado]
-        }] 
+        include: [db.Solicitud] 
       })
     .then(function(dbExpediente) {
       res.json(dbExpediente);
