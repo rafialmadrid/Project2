@@ -1,32 +1,32 @@
-// *********************************************************************************
-// html-routes.js - this file offers a set of routes for sending users to the various html pages
-// *********************************************************************************
+var express = require("express");
 
-// Dependencies
-// =============================================================
-var path = require("path");
+var router = express.Router();
 
-// Routes
-// =============================================================
-module.exports = function(app) {
+router.get("/", function(req, res) {
 
-  // Each of the below routes just handles the HTML page that the user gets sent to.
+    res.render("index2", {});
 
-  // index route loads view.html
-  app.get("/orders1", function(req, res) {
-    res.sendFile(path.join(__dirname, "../public/index1.html"));
-  });
+});
 
-  app.get("/expedientes", function(req, res){
-    res.sendFile(path.join(__dirname, "../public/expediente-manager.html"));
-  });
+router.get("/Nueva", function(req, res) {
 
-  app.get("/solicitudes", function(req, res){
-    res.sendFile(path.join(__dirname, "../public/solicitudes.html"));
-  });
+  res.render("index", {});
 
-  app.get("/orders", function(req, res){
-    res.sendFile(path.join(__dirname, "../public/orders.html"))
-  });
-  
-};
+});
+
+router.get("/Existente", function(req, res) {
+
+  res.render("index3", {});
+
+});
+
+router.get("/Busqueda", function(req, res) {
+
+  res.render("index4", {});
+
+});
+
+
+
+module.exports = router;
+
