@@ -8,6 +8,7 @@ module.exports = function(app) {
     });
   });
 
+
   app.get("/api/expedientes/:nombre", function(req, res){
     db.Expediente.findAll({
       where: {
@@ -18,25 +19,28 @@ module.exports = function(app) {
     })
   });
 
-  app.get("/api/expedientes/:id", function(req, res) {
-    // 2; Add a join to include all of the Expedientes's Solicitudes here
+
+
+  /*app.get("/api/expedientes/:id", function(req, res) {
+    console.log(req.params.id);
     db.Expediente.findOne({
       where: {
-        include: db.Solicitud, 
+        //include: db.Solicitud, 
         id: req.params.id
       }
     }).then(function(dbExpediente) {
       res.json(dbExpediente);
     });
-  });
+  });*/
 
 
 
     
 
   app.post("/api/expedientes", function(req, res) {
-    
+    console.log(req.body);
       solicituds=JSON.parse(req.body.Solicituds);
+      
 
     db.Expediente.create({
       nombre: req.body.nombre,
@@ -46,7 +50,12 @@ module.exports = function(app) {
       Solicituds: solicituds
     },
       {
-        include: [db.Solicitud] 
+        include: [{
+          model: db.Solicitud,
+          include: [{
+            model: db.Estudio
+          }]
+        }] 
       })
     .then(function(dbExpediente) {
       res.json(dbExpediente);

@@ -22,12 +22,12 @@
                   <li class="stick-left bg-green active">
                       <a class="dropdown-toggle" href="#"><span class="mif-home icon"></span>Solicitudes</a>
                       <ul class="d-menu" data-role="dropdown" style="display: none;">
-                          <li><a>Nueva</a></li>
-                          <li><a>Existente</a></li>
+                          <li><a href="/nueva">Nueva</a></li>
+                          <li><a href="/existente">Existente</a></li>
                       </ul>
                   </li>
                   
-                  <li class="stick-left bg-blue active"><a href="#"><span class="mif-search icon"></span>Busqueda</a></li>
+                  <li class="stick-left bg-blue active"><a href="/solicitudes"><span class="mif-search icon"></span>Busqueda</a></li>
               </ul>
 
               </div>
@@ -41,19 +41,19 @@
                     <div class="row">
                         <div class="cell-4">
                             <div class="form-group">
-                                <input type="text" data-role="input" data-prepend="Expediente: ">
+                                <input id="expediente-search" type="text" data-role="input" data-prepend="Expediente: ">
                             </div>
                         </div>
 
                         <div class="cell-4">
                             <div class="form-group">
-                                <input type="text" data-role="input" data-prepend="*Nombre(s): ">
+                                <input id="nombre-search" type="text" data-role="input" data-prepend="*Nombre(s): ">
                             </div>
                         </div>
 
                         <div class="cell-4">
                             <div class="form-group">
-                                <input type="text" data-role="input" data-prepend="Apellidos: ">
+                                <input id="apellidos-search" type="text" data-role="input" data-prepend="Apellidos: ">
                             </div>
                         </div>
 
@@ -89,5 +89,6 @@
 
     <!-- Metro 4 -->
     <script src="https://cdn.metroui.org.ua/v4/js/metro.min.js"></script>
+    <script src="js/orders.js" type="text/javascript"></script> 
   </body>
 </html>

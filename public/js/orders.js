@@ -13,8 +13,7 @@ var total = $("#total");
 
 
 
-
-//PARA SUBIR LOS DATOS A LA BDD CON EXPEDIENTE NUEVO (EXPEDIENTE, SOLICITUD, ESTUDIOS)
+//PARA SUBIR LOS DATOS A LA BDD  (EXPEDIENTE, SOLICITUD, ESTUDIOS)
 $(".btn-warning").on("click",handleSubmit);
 
 
@@ -40,7 +39,7 @@ function handleSubmit(event) {
           descuento: descuento.val(),
           subtotal: subtotal.val(),
           cargo: cargo.val(),    
-          //Estudios: estudios,
+          Estudios: estudios,
         }
       });
     }else if(expediente.val()){
@@ -60,16 +59,14 @@ function handleSubmit(event) {
   
   function upsertNewExpediente(data) {
     console.log(data);
-
     $.post("/api/expedientes", data);
   }
+
 
   function upsertExistingExpediente(data){
     $.post(`/api/solicitudes/${expediente.val()}`, data);
   }
   
-
-
 
 // PARA AGREGAR PRUEBAS A LA SOLICITUD
   $('#estudios').keypress(function (event) {
@@ -84,12 +81,10 @@ function handleSubmit(event) {
     var estudios = [];
     var resultados = [];
   function handleEstudioSubmit(event){
-    console.log("submitted estudio");
     var clave = $("#estudios").val();
-    
 
     $.get(`/api/estudioprecio/${clave}`).then(function(data){
-
+      console.log(data);
 
         data = JSON.parse(data);
       estudios.push({
@@ -102,7 +97,7 @@ function handleSubmit(event) {
       console.log(subtotal_val);
       console.log(estudios);      
 
-        /*var newTr = $("<tr></tr>");
+      var newTr = $("<tr></tr>");
       newTr.data("expediente", data);
       console.log(data.clave);
       console.log(data.nombre);
@@ -112,7 +107,7 @@ function handleSubmit(event) {
       newTr.append("<td>" + data.clave + "</td>");
       newTr.append("<td>" + data.nombre + "</td>");
       newTr.append("<td>" + data.catalogoPrecios[0].total + "</td>");
-      newTr.append("<td>" + data.dias + "</td>");*/
+      newTr.append("<td>" + data.dias + "</td>");
       
       $("#estudios").val("");
     });
@@ -154,3 +149,29 @@ $('#cargo').keypress(function (event) {
 
 
   
+
+
+
+  //Index3.html
+  //PARA BUSCAR LOS EXPEDIENTES EXISTENTES Y MOSTRARLOS EN LA TABLA CUANDO QUEREMOS HACER UNA SOLICITUD CON EXPEDIENTE EXISTENTE
+
+var expedienteSearch = $("#expediente-search");
+var nombreSearch = $("#nombre-search");
+var apellidosSearch = $("#apellidos-search");
+
+
+$('#expediente-search').keypress(function (event) {
+  if (event.which == 13) {
+    searchExpedientes();
+    return false;    //<---- Add this line
+  }
+});
+
+
+function searchExpedientes(){
+    $.get(`/api/expedientes/${nombreSearch.val()}`)
+    .then(function(res){
+    console.log(res);
+    });
+};
+
