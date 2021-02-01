@@ -17,6 +17,22 @@ var total = $("#total");
 //PARA SUBIR LOS DATOS A LA BDD CON EXPEDIENTE NUEVO (EXPEDIENTE, SOLICITUD, ESTUDIOS)
 $(".btn-warning").on("click",handleSubmit);
 
+$("#nuevaSolicitud").on("click", function rutaNueva() {
+  window.location.href = "/Nueva"
+}
+);
+
+$("#existenteSolicitud").on("click", function rutaExistente() {
+  window.location.href = "/Existente"
+}
+);
+
+$("#busqueda").on("click", function rutaBusqueda() {
+  window.location.href = "/Busqueda"
+}
+);
+
+
 
 
 function handleSubmit(event) {
