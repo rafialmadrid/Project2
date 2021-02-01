@@ -18,12 +18,24 @@ var db = require("./models");
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
+//handlebars
+
+var exphbs = require("express-handlebars");
+
+app.engine("handlebars", exphbs({ defaultLayout: "main" }));
+app.set("view engine", "handlebars");
+
+
 // Static directory
 app.use(express.static("public"));
 
 // Routes
 // =============================================================
-require("./routes/html-routes.js")(app);
+
+var routes = require("./routes/html-routes.js");
+
+app.use(routes);
+
 
 require("./routes/expediente-api-routes.js")(app);
 require("./routes/solicitudes-api-routes.js")(app);
