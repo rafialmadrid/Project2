@@ -1,106 +1,104 @@
-                <div class="cell-10" style="padding: 50px;">                
+    <div class="cell-10" style="padding: 50px;">                
 
-                            <div class="row inputFormat">
-                                <div class="cell-5">
-                                    <div class="form-group">
-                                        <input id="expediente" type="text" data-role="input" data-prepend="Expediente: ">
-                                    </div>
-                                    <div class="form-group">
-                                        <input id="nombre" type="text" data-role="input" data-prepend="*Nombre(s): ">
-                                    </div>
-                                    <div class="form-group">
-                                        <input id="apellidos" type="text" data-role="input" data-prepend="Apellidos: ">
-                                    </div>
-                                    <div class="form-group">
-                                    <div class="row">
-                                        <div class="cell-6">
-                                            <div class="form-group">
-                                                <input id="edad" type="text" data-role="input" data-prepend="*Edad: ">
-                                            </div>
-                                        </div>
-                                        <div class="cell-6">
-                                            <select id="sexo" data-role="select" data-prepend="*Sexo: ">
-                                                <option class="fg-cyan">M</option>
-                                                <option class="fg-green">F</option>
-                                            </select>
-                                        </div>
-                                        </div>
-                                    </div>
-                                    
-                                </div> 
-            
-                                <div class="cell-5">
-                                    <div class="form-group">
-                                        <input id="nacimiento" type="text" data-role="input" data-prepend="F.Nac: ">
-                                    </div>
-                                    <div class="form-group">
-                                        <input id="telefono" type="text" data-role="input" data-prepend="Teléfono: ">
-                                    </div>
-                                    <div class="form-group">
-                                        <input id="email" type="text" data-role="input" data-prepend="Email: ">
-                                    </div>
-                                    <div class="form-group">
-                                        <input id="direccion" type="text" data-role="input" data-prepend="Dirección: ">
-                                    </div>
-                                </div>
-            
-                                <div class="cell-2">
-                                    <input type="checkbox" data-role="checkbox" data-caption="Enviar por correo" data-caption-position="left">
-                                    <input type="checkbox" data-role="checkbox" data-caption="Enviar al médico" data-caption-position="left">
-                                </div>
-            
-                            </div>
+    <div class="row inputFormat">
+        <div class="cell-5">
+            <div class="form-group">
+                <input id="expediente" type="text" data-role="input" data-prepend="Expediente: ">
+            </div>
+            <div class="form-group">
+                <input id="nombre" type="text" data-role="input" data-prepend="*Nombre(s): ">
+            </div>
+            <div class="form-group">
+                <input id="apellidos" type="text" data-role="input" data-prepend="Apellidos: ">
+            </div>
+            <div class="form-group">
+            <div class="row">
+                <div class="cell-6">
+                    <div class="form-group">
+                        <input id="edad" type="text" data-role="input" data-prepend="*Edad: ">
+                    </div>
+                </div>
+                <div class="cell-6">
+                    <select id="sexo" data-role="select" data-prepend="*Sexo: ">
+                        <option class="fg-cyan">M</option>
+                        <option class="fg-green">F</option>
+                    </select>
+                </div>
+                </div>
+            </div>
+        </div> 
 
-                            <br>
+        <div class="cell-5">
+            <div class="form-group">
+                <input id="nacimiento" type="text" data-role="input" data-prepend="F.Nac: ">
+            </div>
+            <div class="form-group">
+                <input id="telefono" type="text" data-role="input" data-prepend="Teléfono: ">
+            </div>
+            <div class="form-group">
+                <input id="email" type="text" data-role="input" data-prepend="Email: ">
+            </div>
+            <div class="form-group">
+                <input id="direccion" type="text" data-role="input" data-prepend="Dirección: ">
+            </div>
+        </div>
 
-                            <div class="row tableSearch">
+        <div class="cell-2">
+            <input type="checkbox" data-role="checkbox" data-caption="Enviar por correo" data-caption-position="left">
+            <input type="checkbox" data-role="checkbox" data-caption="Enviar al médico" data-caption-position="left">
+        </div>
+    </div>
 
-                                <div class="cell-3">
-                                    <p>Ingrese código de estudio: </p><input class="form-control submit_on_enter" id="estudios" type="text" data-role="input" data-search-button="true">
-                                </div>
+    <br>
+
+    <div class="row tableSearch">
+
+        <div class="cell-3">
+            <p>Ingrese código de estudio: </p><input class="form-control submit_on_enter" id="estudios" type="text" data-role="input" data-search-button="true">
+        </div>
 
 
-                                <div class="cell-6">
-                                    <table class="table table-fixed">
-                                        <thead>
-                                            <tr>
-                                                <th >Clave</th>
-                                                <th >Estudio</th>
-                                                <th >Precio</th>
-                                                <th >Dias</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            
-                                        </tbody>
-                                    </table>
-                                </div>
+        <div class="cell-6">
+            <table class="table table-fixed">
+                <thead>
+                    <tr>
+                        <th >Clave</th>
+                        <th >Estudio</th>
+                        <th >Precio</th>
+                        <th >Dias</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    
+                </tbody>
+            </table>
+        </div>
 
-                                <div class="cell-3">
+        <div class="cell-3">
 
-                                    <form>
-                                       
-                                        <div class="form-group">
-                                            <button class="button success btn-warning">Guardar</button>
-                                            <input type="button" class="button" value="Cancelar">
-                                        </div>
+            <form>
+               
+                <div class="form-group">
+                    <button class="button success btn-warning">Guardar</button>
+                    <input type="button" class="button" value="Cancelar">
+                </div>
 
-                                        <div class="form-group">
-                                            <input id="subtotal" type="text" data-role="input" data-prepend="Subtotal: ">
-                                        </div>
-                                        <div class="form-group">
-                                            <input id="descuento" type="text" data-role="input" data-prepend="Descuento(%): ">
-                                        </div>
-                                        <div class="form-group">
-                                            <input id="cargo" type="text" data-role="input" data-prepend="Cargo: ">
-                                        </div>
-                                        <div class="form-group">
-                                            <input id="total" type="text" data-role="input" data-prepend="Total: ">
-                                        </div>
+                <div class="form-group">
+                    <input id="subtotal" type="text" data-role="input" data-prepend="Subtotal: ">
+                </div>
+                <div class="form-group">
+                    <input id="descuento" type="text" data-role="input" data-prepend="Descuento(%): ">
+                </div>
+                <div class="form-group">
+                    <input id="cargo" type="text" data-role="input" data-prepend="Cargo: ">
+                </div>
+                <div class="form-group">
+                    <input id="total" type="text" data-role="input" data-prepend="Total: ">
+                </div>
 
-                                    </form>
+            </form>
 
-                                </div>
-                   
-                            </div>
-                </div>  
+        </div>
+
+    </div>
+</div>  

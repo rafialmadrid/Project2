@@ -21,25 +21,9 @@ module.exports = function(app) {
 
 
 
-  /*app.get("/api/expedientes/:id", function(req, res) {
-    console.log(req.params.id);
-    db.Expediente.findOne({
-      where: {
-        //include: db.Solicitud, 
-        id: req.params.id
-      }
-    }).then(function(dbExpediente) {
-      res.json(dbExpediente);
-    });
-  });*/
-
-
-
-    
-
   app.post("/api/expedientes", function(req, res) {
     console.log(req.body);
-      solicituds=JSON.parse(req.body.Solicituds);
+      solicituds=req.body.Solicituds;
       
 
     db.Expediente.create({

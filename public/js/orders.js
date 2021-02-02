@@ -102,7 +102,6 @@ function handleSubmit(event) {
     $.get(`/api/estudioprecio/${clave}`).then(function(data){
       console.log(data);
 
-        data = JSON.parse(data);
       estudios.push({
         catalogoEstudioId: data.id
       });
@@ -176,18 +175,77 @@ var nombreSearch = $("#nombre-search");
 var apellidosSearch = $("#apellidos-search");
 
 
-$('#expediente-search').keypress(function (event) {
+nombreSearch.keypress(function (event) {
   if (event.which == 13) {
     searchExpedientes();
     return false;    //<---- Add this line
   }
 });
 
-
+    
+var exps;
 function searchExpedientes(){
     $.get(`/api/expedientes/${nombreSearch.val()}`)
-    .then(function(res){
-    console.log(res);
+    .then(function(expedientes){
+      exps = expedientes;
+    //console.log(expedientes);
+    //console.log(exps);
+
+    expedientes.forEach(function(expediente){
+          var newTr = $("<tr></tr>");
+      newTr.data("expedientes", expediente);
+      $("tbody").append(newTr);
+
+      newTr.append("<td>" + "<a>" + expediente.id + "</a>" + "</td>");
+      $("a").attr("id", "exp");
+      $("a").attr("href", "#");
+      newTr.append("<td>" + expediente.nombre + "</td>");
+      newTr.append("<td>" + expediente.nacimiento + "</td>");
+      newTr.append("<td>" + expediente.telefono + "</td>");
+    });
+
+
+      nombreSearch.val("");
+
+
     });
 };
 
+
+var selectedexp;
+//PARA REDIRIGIR A LA PÁGINA DE CREAR SOLICITUD CON LOS DATOS LLENOS DEL EXPEDIENTE
+$(document).on("click", "#exp" ,function(event){
+  event.preventDefault();
+  idexp = parseInt($(this).text());
+  selectedexp = exps.find(x => x.id === idexp);
+  console.log(selectedexp.id);
+  
+
+
+ window.location.href = `/Nueva/${selectedexp.id}`;
+});
+
+
+  /*nombre.val(selectedexp.nombre);
+  apellidos.val(selectedexp.apellidos);
+  sexo.val(selectedexp.sexo);
+  edad.val(selectedexp.edad);
+  expediente.val(selectedexp.id);*/
+
+/*  var getUrlParameter = function getUrlParameter(sParam) {
+    var sPageURL = window.location.search.substring(1),
+        sURLVariables = sPageURL.split('&'),
+        sParameterName,
+        i;
+
+    for (i = 0; i < sURLVariables.length; i++) {
+        sParameterName = sURLVariables[i].split('=');
+
+        if (sParameterName[0] === sParam) {
+            return sParameterName[1] === undefined ? true : decodeURIComponent(sParameterName[1]);
+        }
+    }
+};
+
+
+*/
