@@ -32,10 +32,10 @@ app.use(express.static("public"));
 // Routes
 // =============================================================
 
-var routes = require("./routes/html-routes.js");
+/*var routes = require("./routes/html-routes.js");
+app.use(routes);*/
 
-app.use(routes);
-
+require("./routes/html-routes.js")(app);
 
 require("./routes/expediente-api-routes.js")(app);
 require("./routes/solicitudes-api-routes.js")(app);

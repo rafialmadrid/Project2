@@ -13,8 +13,7 @@ var total = $("#total");
 
 
 
-
-//PARA SUBIR LOS DATOS A LA BDD CON EXPEDIENTE NUEVO (EXPEDIENTE, SOLICITUD, ESTUDIOS)
+//PARA SUBIR LOS DATOS A LA BDD  (EXPEDIENTE, SOLICITUD, ESTUDIOS)
 $(".btn-warning").on("click",handleSubmit);
 
 $("#nuevaSolicitud").on("click", function rutaNueva() {
@@ -56,7 +55,7 @@ function handleSubmit(event) {
           descuento: descuento.val(),
           subtotal: subtotal.val(),
           cargo: cargo.val(),    
-          //Estudios: estudios,
+          Estudios: estudios,
         }
       });
     }else if(expediente.val()){
@@ -76,16 +75,14 @@ function handleSubmit(event) {
   
   function upsertNewExpediente(data) {
     console.log(data);
-
     $.post("/api/expedientes", data);
   }
+
 
   function upsertExistingExpediente(data){
     $.post(`/api/solicitudes/${expediente.val()}`, data);
   }
   
-
-
 
 // PARA AGREGAR PRUEBAS A LA SOLICITUD
   $('#estudios').keypress(function (event) {
@@ -100,14 +97,11 @@ function handleSubmit(event) {
     var estudios = [];
     var resultados = [];
   function handleEstudioSubmit(event){
-    console.log("submitted estudio");
     var clave = $("#estudios").val();
-    
 
     $.get(`/api/estudioprecio/${clave}`).then(function(data){
+      console.log(data);
 
-
-        data = JSON.parse(data);
       estudios.push({
         catalogoEstudioId: data.id
       });
@@ -118,7 +112,7 @@ function handleSubmit(event) {
       console.log(subtotal_val);
       console.log(estudios);      
 
-        /*var newTr = $("<tr></tr>");
+      var newTr = $("<tr></tr>");
       newTr.data("expediente", data);
       console.log(data.clave);
       console.log(data.nombre);
@@ -128,7 +122,7 @@ function handleSubmit(event) {
       newTr.append("<td>" + data.clave + "</td>");
       newTr.append("<td>" + data.nombre + "</td>");
       newTr.append("<td>" + data.catalogoPrecios[0].total + "</td>");
-      newTr.append("<td>" + data.dias + "</td>");*/
+      newTr.append("<td>" + data.dias + "</td>");
       
       $("#estudios").val("");
     });
@@ -170,3 +164,81 @@ $('#cargo').keypress(function (event) {
 
 
   
+
+
+
+  //Index3.html
+  //PARA BUSCAR LOS EXPEDIENTES EXISTENTES Y MOSTRARLOS EN LA TABLA CUANDO QUEREMOS HACER UNA SOLICITUD CON EXPEDIENTE EXISTENTE
+
+var expedienteSearch = $("#expediente-search");
+var nombreSearch = $("#nombre-search");
+var apellidosSearch = $("#apellidos-search");
+
+
+nombreSearch.keypress(function (event) {
+  if (event.which == 13) {
+    searchExpedientes();
+    return false;    //<---- Add this line
+  }
+});
+
+    
+var exps;
+function searchExpedientes(){
+    $.get(`/api/expedientes/${nombreSearch.val()}`)
+    .then(function(expedientes){
+      exps = expedientes;
+    //console.log(expedientes);
+    //console.log(exps);
+
+    expedientes.forEach(function(expediente){
+          var newTr = $("<tr></tr>");
+      newTr.data("expedientes", expediente);
+      $("tbody").append(newTr);
+
+      newTr.append("<td>" + "<a>" + expediente.id + "</a>" + "</td>");
+      $("a").attr("id", "exp");
+      $("a").attr("href", "#");
+      newTr.append("<td>" + expediente.nombre + "</td>");
+      newTr.append("<td>" + expediente.nacimiento + "</td>");
+      newTr.append("<td>" + expediente.telefono + "</td>");
+    });
+
+
+      nombreSearch.val("");
+
+
+    });
+};
+
+
+var selectedexp;
+//PARA REDIRIGIR A LA PÁGINA DE CREAR SOLICITUD CON LOS DATOS LLENOS DEL EXPEDIENTE
+$(document).on("click", "#exp" ,function(event){
+  event.preventDefault();
+  idexp = parseInt($(this).text());
+  selectedexp = exps.find(x => x.id === idexp);
+  console.log(selectedexp.id);
+  window.location.href = `/nueva/?id=${selectedexp.id}`;
+
+});
+
+var getUrlParameter = function getUrlParameter(sParam) {
+    var sPageURL = window.location.search.substring(1),
+        sURLVariables = sPageURL.split('&'),
+        sParameterName,
+        i;
+
+    for (i = 0; i < sURLVariables.length; i++) {
+        sParameterName = sURLVariables[i].split('=');
+
+        if (sParameterName[0] === sParam) {
+            return sParameterName[1] === undefined ? true : decodeURIComponent(sParameterName[1]);
+        }
+    }
+};
+
+var idexp = getUrlParameter("id");
+
+console.log(idexp);
+expediente.val(idexp);
