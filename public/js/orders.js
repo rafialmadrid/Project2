@@ -219,20 +219,11 @@ $(document).on("click", "#exp" ,function(event){
   idexp = parseInt($(this).text());
   selectedexp = exps.find(x => x.id === idexp);
   console.log(selectedexp.id);
-  
+  window.location.href = `/nueva/?id=${selectedexp.id}`;
 
-
- window.location.href = `/Nueva/${selectedexp.id}`;
 });
 
-
-  /*nombre.val(selectedexp.nombre);
-  apellidos.val(selectedexp.apellidos);
-  sexo.val(selectedexp.sexo);
-  edad.val(selectedexp.edad);
-  expediente.val(selectedexp.id);*/
-
-/*  var getUrlParameter = function getUrlParameter(sParam) {
+var getUrlParameter = function getUrlParameter(sParam) {
     var sPageURL = window.location.search.substring(1),
         sURLVariables = sPageURL.split('&'),
         sParameterName,
@@ -247,5 +238,7 @@ $(document).on("click", "#exp" ,function(event){
     }
 };
 
+var idexp = getUrlParameter("id");
 
-*/
+console.log(idexp);
+expediente.val(idexp);
